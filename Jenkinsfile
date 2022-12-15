@@ -1,15 +1,16 @@
-pipeline {
-  agent any
-  stages {
-    stage('version') {
-      steps {
-        sh 'python3 --version'
-      }
+node{
+  def app
+    stage('Clone'){
+      checkout scm
     }
-    stage('app') {
-      steps {
-        sh 'python3 app.py'
-      }
+    stage('Build image'){
+        app = docher.buid('test/test')
+    }
+    stage('Test image'){
+      docker.image('test/test').withRun('-p 80:80'){ c ->
+        sh 'docker ps'
+        sh 'curl localhost'
     }
   }
 }
+      
