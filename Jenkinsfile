@@ -1,5 +1,6 @@
 pipeline {
-    agent { docker { image 'maven:3.3.3' } }
+    agent { dockerfile true }
+    
       stages {
         stage('log version info') {
       steps {
