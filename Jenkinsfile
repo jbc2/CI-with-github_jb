@@ -1,16 +1,11 @@
-node{
-  def app
-    stage('Clone'){
-      checkout scm
-    }
-    stage('Build image'){
-        app = docher.buid('test/test')
-    }
-    stage('Test image'){
-      docker.image('test/test').withRun('-p 80:80'){ c ->
-        sh 'docker ps'
-        sh 'curl localhost'
+pipeline {
+    agent { docker { image 'maven:3.3.3' } }
+      stages {
+        stage('log version info') {
+      steps {
+        sh 'mvn --version'
+        sh 'mvn clean install'
+      }
     }
   }
 }
-      
