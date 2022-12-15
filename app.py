@@ -1,73 +1,9 @@
-
-"""
-simple python flask application
-"""
-
-##########################################################################
-## Imports
-##########################################################################
-
-import os
-
-from flask import Flask
-from flask import request
-from flask import render_template
-from flask import url_for
-from flask.json import jsonify
-
-##########################################################################
-## Application Setup
-##########################################################################
-
-app = Flask(__name__)
-
-##########################################################################
-## Routes
-##########################################################################
-
-@app.route("/")
-def home():
-    return render_template("home.html")
-
-@app.route("/api/hello")
-def hello():
-    """
-    Return a hello message
-    """
-    return jsonify({"hello": "world"})
-
-@app.route("/api/hello/<name>")
-def hello_name(name):
-    """
-    Return a hello message with name
-    """
-    return jsonify({"hello": name})
-
-@app.route("/api/whoami")
-def whoami():
-    """
-    Return a JSON object with the name, ip, and user agent
-    """
-    return jsonify(
-        name=request.remote_addr,
-        ip=request.remote_addr,
-        useragent=request.user_agent.string
-    )
-
-@app.route("/api/whoami/<name>")
-def whoami_name(name):
-    """
-    Return a JSON object with the name, ip, and user agent
-    """
-    return jsonify(
-        name=name,
-        ip=request.remote_addr,
-        useragent=request.user_agent.string
-    )
-
-##########################################################################
-## Main
-##########################################################################
-
+from flask import Flask # importing the flask class
+app = Flask(__name__) # creating an instance of the Flask class
+ 
+@app.route('/') # The primary url for our application
+def hello_world(): # This method returns 'Flask Dockerized', which is displayed in our browser.
+    return 'Flask Dockerized'
+ 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0') # This statement starts the server on your local machine.
