@@ -1,14 +1,11 @@
-# Dockerfile to build a flask app
-FROM python:3.8-slim-buster
-RUN apk --update add bash nano
+FROM python:3.9.2
 
-ENV STATIC_URL /static
-ENV STATIC_PATH /var/www/app/static
+WORKDIR python-docker
 
-#WORKDIR /app
 
-COPY ./requirements.txt /var/www/requirements.txt
-RUN pip install -r /var/www/requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
-#ENTRYPOINT ["python3"]
+COPY . .
+
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
