@@ -1,7 +1,8 @@
-FROM python:3.8
-WORKDIR /app
-COPY . /app
+FROM ubuntu:latest
+RUN apt-get update -y
+RUN apt-get install -y python-pip python-dev build-essential
+ADD . /flask-app
+WORKDIR /flask-app
 RUN pip install -r requirements.txt
-EXPOSE 5000
 ENTRYPOINT ["python"]
 CMD ["app.py"]
