@@ -24,12 +24,13 @@ class FlaskTestCase(unittest.TestCase):
 #        response = self.app.get('/api/whoami')
 #        self.assertEqual(response.status_code, 200)
 #        self.assertIsNotNone(response.json['ip'])
-#
+     print("ok")
 #    def test_whoami_name(self):
 #        response = self.app.get('/api/whoami/ben')
 #        self.assertEqual(response.status_code, 200)
 #        self.assertEqual(response.json['name'], 'ben')
 #
+    
 if __name__ == '__main__':
     unittest.main()
 
